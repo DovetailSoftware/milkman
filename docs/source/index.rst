@@ -4,7 +4,13 @@
 Milkman Documentation
 =====================
 
+milkman is a bottle aware deployment framework
+
 .. rubric:: Milkman docs
 
 .. toctree::
-   :maxtepth: 2
+    :maxdepth: 2
+    
+    intro
+
+aoeu
