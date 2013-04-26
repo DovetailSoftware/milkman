@@ -17,7 +17,7 @@ namespace Bottles.Deployment.Commands
         public string DeploymentFlag { get; set; }
 
         [Description("Import any other ~/deployment folders for this deployment")]
-        [RequiredUsage("imports")]
+        //[RequiredUsage("imports")]
         // TODO -- want an end to end test on this
         public IList<string> ImportedFolders { get; set; }
 

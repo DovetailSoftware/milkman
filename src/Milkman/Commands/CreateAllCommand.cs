@@ -44,18 +44,19 @@ namespace Bottles.Deployment.Commands
 
         public bool Execute(IFileSystem system, CreateAllInput input)
         {
-            var settings = DeploymentSettings.ForDirectory(input.DeploymentFlag);
-
-            var i =  new Bottles.Commands.CreateAllInput
-            {
-                DirectoryFlag = input.DirectoryFlag,
-                DeploymentFlag = input.DeploymentFlag,
-                PdbFlag = input.PdbFlag,
-                TargetFlag = input.TargetFlag,
-                CleanFlag = input.CleanFlag,
-                OutputFlag = settings.BottlesDirectory
-            };
-            return new Bottles.Commands.CreateAllCommand().Execute(i);
+//            var settings = DeploymentSettings.ForDirectory(input.DeploymentFlag);
+//
+//            var i =  new Bottles.Commands.CreateAllInput
+//            {
+//                DirectoryFlag = input.DirectoryFlag,
+//                DeploymentFlag = input.DeploymentFlag,
+//                PdbFlag = input.PdbFlag,
+//                TargetFlag = input.TargetFlag,
+//                CleanFlag = input.CleanFlag,
+//                OutputFlag = settings.BottlesDirectory
+//            };
+//            return new Bottles.Commands.CreateAllCommand().Execute(i);
+            return false;
         }
     }
 }

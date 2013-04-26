@@ -15,13 +15,13 @@ namespace Bottles.Host.Packaging
         public static readonly string TopshelfContentFolder = "topshelf-content";
 
         private readonly IBottleExploder _exploder;
-        private readonly BottleManifestReader _reader;
+        private readonly PackageManifestReader _reader;
 
         public TopshelfPackageLoader(IBottleExploder exploder)
         {
             _exploder = exploder;
 
-            _reader = new BottleManifestReader(new FileSystem(), getContentFolderForPackage);
+            _reader = new PackageManifestReader(new FileSystem(), getContentFolderForPackage);
         }
 
         public IEnumerable<IPackageInfo> Load(IPackageLog log)

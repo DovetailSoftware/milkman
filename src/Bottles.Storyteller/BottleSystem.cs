@@ -1,4 +1,5 @@
 ﻿using System;
+using FubuCore.Conversion;
 using StoryTeller.Engine;
 
 namespace Bottles.Storyteller
@@ -33,6 +34,11 @@ namespace Bottles.Storyteller
         public void RegisterFixtures(FixtureRegistry registry)
         {
             registry.AddFixturesFromThisAssembly();
+        }
+
+        public IObjectConverter BuildConverter()
+        {
+            throw new NotImplementedException();
         }
     }
 }

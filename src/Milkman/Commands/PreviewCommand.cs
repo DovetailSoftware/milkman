@@ -17,7 +17,7 @@ namespace Bottles.Deployment.Commands
             Profile = "default";
         }
 
-        [RequiredUsage("named")]
+        //[RequiredUsage("named")]
         [Description("The profile to execute")]
         public string Profile { get; set; }
 
@@ -32,8 +32,8 @@ namespace Bottles.Deployment.Commands
         public bool OpenFlag { get; set; }
     }
 
-    [Usage("default", "Creates a preview of the 'default' profile")]
-    [Usage("named", "Creates a preview of the named profile from the argument")]
+    //[Usage("default", "Creates a preview of the 'default' profile")]
+    //[Usage("named", "Creates a preview of the named profile from the argument")]
     [CommandDescription("Generates a preview of the deployment")]
     public class PreviewCommand : FubuCommand<PreviewInput>
     {

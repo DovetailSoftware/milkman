@@ -31,13 +31,37 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Bottles">
+      <HintPath>..\packages\Bottles\lib\Bottles.dll</HintPath>
+    </Reference>
+    <Reference Include="FubuCore">
+      <HintPath>..\packages\FubuCore\lib\FubuCore.dll</HintPath>
+    </Reference>
+    <Reference Include="FubuTestingSupport">
+      <HintPath>..\packages\FubuTestingSupport\lib\FubuTestingSupport.dll</HintPath>
+    </Reference>
+    <Reference Include="HtmlTags">
+      <HintPath>..\packages\HtmlTags\lib\4.0\HtmlTags.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="nunit.framework">
+      <HintPath>..\packages\NUnit\lib\nunit.framework.dll</HintPath>
+    </Reference>
+    <Reference Include="Rhino.Mocks">
+      <HintPath>..\packages\RhinoMocks\lib\net\Rhino.Mocks.dll</HintPath>
+    </Reference>
+    <Reference Include="StructureMap">
+      <HintPath>..\packages\structuremap\lib\StructureMap.dll</HintPath>
+    </Reference>
+    <Reference Include="StructureMap.AutoMocking">
+      <HintPath>..\packages\structuremap.automocking\lib\net40\StructureMap.AutoMocking.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Commands\InstallationRunnerTester.cs" />
@@ -108,6 +132,36 @@
     <None Include="Configuration\Two.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BottleDeployers1\BottleDeployers1.csproj">
+      <Project>{a1bff74b-3e5c-4342-b065-99d0c08664d5}</Project>
+      <Name>BottleDeployers1</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BottleDeployers2\BottleDeployers2.csproj">
+      <Project>{0ffd21ca-4b9b-4c72-91b2-91a3f44d4151}</Project>
+      <Name>BottleDeployers2</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Bottles.Host.Packaging\Bottles.Host.Packaging.csproj">
+      <Project>{3eb7b41a-ce35-495b-9845-036b0013a6f6}</Project>
+      <Name>Bottles.Host.Packaging</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Milkman.Deployers.Iis\Milkman.Deployers.Iis.csproj">
+      <Project>{607f7461-947c-42d7-a4ca-379199a74e6b}</Project>
+      <Name>Milkman.Deployers.Iis</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Milkman.Deployers.Topshelf\Milkman.Deployers.Topshelf.csproj">
+      <Project>{1508b697-b748-4d1a-b5f8-abd967db4ed5}</Project>
+      <Name>Milkman.Deployers.Topshelf</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Milkman\Milkman.csproj">
+      <Project>{665aeffb-7582-484f-8c77-8310b1ae55f2}</Project>
+      <Name>Milkman</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

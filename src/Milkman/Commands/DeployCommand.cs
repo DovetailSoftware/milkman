@@ -31,8 +31,8 @@ namespace Bottles.Deployment.Commands
     }
 
     [CommandDescription("Deploys the given profile")]
-    [Usage("default", "Deploy with only the environment settings in the deployment folder")]
-    [Usage("imports", "Deploy with imported folders")]
+    //[Usage("default", "Deploy with only the environment settings in the deployment folder")]
+    //[Usage("imports", "Deploy with imported folders")]
     public class DeployCommand : FubuCommand<DeployInput>
     {
         public override bool Execute(DeployInput input)

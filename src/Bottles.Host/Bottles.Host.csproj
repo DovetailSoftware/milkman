@@ -33,18 +33,21 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Bottles">
+      <HintPath>..\packages\Bottles\lib\Bottles.dll</HintPath>
+    </Reference>
     <Reference Include="FubuCore">
-      <HintPath>..\packages\FubuCore.0.9.9.196\lib\FubuCore.dll</HintPath>
+      <HintPath>..\packages\FubuCore\lib\FubuCore.dll</HintPath>
     </Reference>
     <Reference Include="log4net">
-      <HintPath>..\packages\log4net.2.0.0\lib\net40-full\log4net.dll</HintPath>
+      <HintPath>..\packages\log4net\lib\net40-full\log4net.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Management" />
     <Reference Include="System.Xml" />
     <Reference Include="Topshelf">
-      <HintPath>..\packages\TopShelf.2.2.3.0\lib\NET40\Topshelf.dll</HintPath>
+      <HintPath>..\packages\TopShelf\lib\NET40\Topshelf.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -57,10 +60,6 @@
       <Project>{3EB7B41A-CE35-495B-9845-036B0013A6F6}</Project>
       <Name>Bottles.Host.Packaging</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Bottles\Bottles.csproj">
-      <Project>{E208A2B1-31B0-4455-BA16-3D79F5887ECE}</Project>
-      <Name>Bottles</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Milkman.Deployers.Topshelf\Milkman.Deployers.Topshelf.csproj">
       <Project>{1508B697-B748-4D1A-B5F8-ABD967DB4ED5}</Project>
       <Name>Milkman.Deployers.Topshelf</Name>
@@ -68,7 +67,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include=".package-manifest" />
-    <None Include="packages.config" />
+    <None Include="ripple.dependencies.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -31,31 +31,34 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="FubuCore">
-      <HintPath>..\packages\FubuCore.0.9.9.196\lib\FubuCore.dll</HintPath>
+    <Reference Include="Bottles">
+      <HintPath>..\packages\Bottles\lib\Bottles.dll</HintPath>
     </Reference>
+    <Reference Include="FubuCore">
+      <HintPath>..\packages\FubuCore\lib\FubuCore.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
     <Reference Include="nunit.framework">
-      <HintPath>..\packages\NUnit.2.5.10.11092\lib\nunit.framework.dll</HintPath>
+      <HintPath>..\packages\NUnit\lib\nunit.framework.dll</HintPath>
     </Reference>
     <Reference Include="nunit.mocks">
-      <HintPath>..\packages\NUnit.2.5.10.11092\lib\nunit.mocks.dll</HintPath>
+      <HintPath>..\packages\NUnit\lib\nunit.mocks.dll</HintPath>
     </Reference>
     <Reference Include="pnunit.framework">
-      <HintPath>..\packages\NUnit.2.5.10.11092\lib\pnunit.framework.dll</HintPath>
+      <HintPath>..\packages\NUnit\lib\pnunit.framework.dll</HintPath>
     </Reference>
     <Reference Include="StoryTeller">
-      <HintPath>..\..\lib\StoryTeller\StoryTeller.dll</HintPath>
+      <HintPath>..\packages\Storyteller\lib\net40\StoryTeller.dll</HintPath>
     </Reference>
     <Reference Include="StructureMap">
-      <HintPath>..\packages\structuremap.2.6.3\lib\StructureMap.dll</HintPath>
+      <HintPath>..\packages\structuremap\lib\StructureMap.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BottleSystem.cs" />
@@ -64,16 +67,20 @@
     <Compile Include="StoryTellerDebug.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Bottles\Bottles.csproj">
-      <Project>{E208A2B1-31B0-4455-BA16-3D79F5887ECE}</Project>
-      <Name>Bottles</Name>
+    <ProjectReference Include="..\Milkman.Deployers.Iis\Milkman.Deployers.Iis.csproj">
+      <Project>{607f7461-947c-42d7-a4ca-379199a74e6b}</Project>
+      <Name>Milkman.Deployers.Iis</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Milkman\Milkman.csproj">
+      <Project>{665aeffb-7582-484f-8c77-8310b1ae55f2}</Project>
+      <Name>Milkman</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Tests\" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
+    <None Include="ripple.dependencies.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

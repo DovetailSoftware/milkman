@@ -29,7 +29,7 @@ namespace Bottles.Deployment.Commands
         }
 
         [Description("What to list")]
-        [RequiredUsage("mode")]
+        //[RequiredUsage("mode")]
         public ListMode Mode { get; set; }
 
 
@@ -48,8 +48,8 @@ namespace Bottles.Deployment.Commands
     }
 
     [CommandDescription("Lists all discovered manifests", Name = "list")]
-    [Usage("default", "List manifests")]
-    [Usage("mode", "list something specific")]
+    //[Usage("default", "List manifests")]
+    //[Usage("mode", "list something specific")]
     public class ListCommand : FubuCommand<ListInput>
     {
         public override bool Execute(ListInput input)

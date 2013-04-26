@@ -10,15 +10,15 @@ namespace Bottles.Deployment.Commands
     public class BundleInput : PlanInput
     {
         [Description("The directory name where the deployment artifacts are going to be written")]
-        [RequiredUsage("imports", "default")]
+        //[RequiredUsage("imports", "default")]
         public string Destination { get; set; }
 
         [FlagAlias("create-bottles", 'c')]
         public bool CreateBottlesFlag { get; set; }
     }
 
-    [Usage("default", "Bundle with only the environment settings in the deployment folder")]
-    [Usage("imports", "Bundle with imported folders")]
+    //[Usage("default", "Bundle with only the environment settings in the deployment folder")]
+    //[Usage("imports", "Bundle with imported folders")]
     [CommandDescription("Bundles up designated deployment options to a folder")]
     public class BundleCommand : FubuCommand<BundleInput>
     {
