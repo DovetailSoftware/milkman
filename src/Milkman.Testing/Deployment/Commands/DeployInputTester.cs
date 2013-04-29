@@ -61,15 +61,5 @@ namespace Bottles.Tests.Deployment.Commands
         {
             new DeployInput().CreateDeploymentOptions().ImportedFolders.Any().ShouldBeFalse();
         }
-
-        [Test]
-        public void imported_folders()
-        {
-            var input = new DeployInput(){
-                ImportedFolders = new string[]{"a", "b", "c"}
-            };
-
-            input.CreateDeploymentOptions().ImportedFolders.ShouldHaveTheSameElementsAs("a", "b", "c");
-        }
     }
 }

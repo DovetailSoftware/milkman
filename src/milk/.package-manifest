@@ -9,5 +9,4 @@
   <assembly>Bottles.Host.Packaging</assembly>
   <assembly>FubuCore</assembly>
   <assembly>HtmlTags</assembly>
-  <assembly>Ionic.Zip</assembly>
 </package>

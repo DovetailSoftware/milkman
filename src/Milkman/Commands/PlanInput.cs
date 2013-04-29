@@ -16,11 +16,6 @@ namespace Bottles.Deployment.Commands
         [Description("Path to where the deployment folder is ~/deployment")]
         public string DeploymentFlag { get; set; }
 
-        [Description("Import any other ~/deployment folders for this deployment")]
-        //[RequiredUsage("imports")]
-        // TODO -- want an end to end test on this
-        public IList<string> ImportedFolders { get; set; }
-
         [Description("Tacks on ONE additional recipie. Great for including tests.")] //until fubu command gets better at parsing command lines
         [FlagAlias("recipe", 'r')]
         public string RecipeFlag { get; set; }
@@ -44,11 +39,6 @@ namespace Bottles.Deployment.Commands
             if(RecipeFlag != null)
             {
                 options.RecipeNames.Fill(RecipeFlag);
-            }
-
-            if (ImportedFolders != null)
-            {
-                options.ImportedFolders.AddRange(ImportedFolders);
             }
 
             return options;
