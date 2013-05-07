@@ -61,7 +61,7 @@ namespace Bottles.Deployers.Topshelf
 
                 service.WaitForStatus(ServiceControllerStatus.Stopped, new TimeSpan(0, 0, 0, 30)); //waits 30 seconds
             }
-            catch (TimeoutException ex)
+            catch (TimeoutException)
             {
                 log.MarkFailure(
                     "Unable to stop service '{0}' using conventional stop after 30 seconds".ToFormat(
