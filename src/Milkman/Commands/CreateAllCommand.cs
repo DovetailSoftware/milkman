@@ -84,7 +84,7 @@ namespace Bottles.Deployment.Commands
                 return createPackage(folder, zipOutputPath, input);
             });
 
-            return results.Any(r => !r);
+            return !results.Any(r => !r);
         }
 
         private static bool createPackage(string packageFolder, string zipFileName, CreateAllInput input)
