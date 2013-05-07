@@ -1,5 +1,3 @@
-# require 'bundler/setup'
-
 COMPILE_TARGET = ENV['config'].nil? ? "Debug" : ENV['config'] # Keep this in sync w/ VS settings since Mono is case-sensitive
 CLR_TOOLS_VERSION = "v4.0.30319"
 
@@ -18,6 +16,9 @@ buildsupportfiles.each { |ext| load ext }
 
 include FileTest
 require 'albacore'
+gem 'rubyzip'
+require 'zip/zip'
+require 'zip/zipfilesystem'
 load "VERSION.txt"
 
 RESULTS_DIR = "results"
@@ -35,16 +36,16 @@ BUILD_NUMBER = "#{BUILD_VERSION}.#{build_revision}"
 props = { :stage => BUILD_DIR, :artifacts => ARTIFACTS }
 
 desc "**Default**, compiles and runs tests"
-task :default => [:compile, :unit_test]
+task :default => [:compile, :create_bottles, :unit_test]
 
-desc "Unit and Integration Tests"
-task :full => [:default, :integration_test]
+desc "Full compile and test (same as 'default' task)"
+task :full => [:default]
 
 desc "Target used for the CI server"
-task :ci => [:update_all_dependencies, :default, :integration_test, :history, :package]
+task :ci => [:update_all_dependencies, :default, :history, :package]
 
 desc "Target used for CI on Mono"
-task :mono_ci => [:update_all_dependencies, :compile, :mono_unit_test, :integration_test]
+task :mono_ci => [:update_all_dependencies, :default, :mono_unit_test]
 
 desc "Update the version information for the build"
 assemblyinfo :version do |asm|
@@ -89,21 +90,37 @@ end
 
 desc "Compiles the app"
 task :compile => [:restore_if_missing, :clean, :version, "docs:bottle"] do
-
-
   MSBuildRunner.compile :compilemode => COMPILE_TARGET, :solutionfile => 'src/Milkman.sln', :clrversion => CLR_TOOLS_VERSION
-
-  #copyOutputFiles "src/fubu/bin/#{COMPILE_TARGET}", "Bottles*.{dll,pdb,exe}", props[:stage]
-  #copyOutputFiles "src/fubu/bin/#{COMPILE_TARGET}", "fubu", props[:stage]
-
   target = COMPILE_TARGET.downcase
 end
 
-def copyOutputFiles(fromDir, filePattern, outDir)
-  Dir.glob(File.join(fromDir, filePattern)){|file|
-  copy(file, outDir, :preserve => true) if File.file?(file)
-  }
+task :create_bottles => :compile do
+  milk_dir = "src/milk/bin/#{COMPILE_TARGET}"
+  
+  sh "#{milk_dir}/milk.exe create-all -o build"
+  File.delete "build/milkman.zip" if File.exist? "build/milkman.zip"
+  
+  outer_file_list = FileList.new("#{milk_dir}/*.*") do |fl|
+    fl.exclude("#{milk_dir}/*.xml")
+    fl.exclude("#{milk_dir}/*vshost*")
+  end
+  
+  bin_folder_file_list = FileList.new("#{milk_dir}/*.dll", "#{milk_dir}/*.exe") do |fl|
+    fl.exclude("#{milk_dir}/*vshost*")
+    fl.exclude("#{milk_dir}/*Deployers*")
+  end
+  
+  Zip::ZipFile.open("build/milkman.zip", Zip:ZipFile::CREATE) do |zip|
+    outer_file_list.to_a.each do |f|
+      zip.add(f.sub("#{milk_dir}/",''), f)
+    end
+    
+    bin_folder_file_list.to_a.each do |f|
+      zip.add(f.sub("#{milk_dir}/",'bin/'), f)
+    end
+  end  
 end
+
 
 desc "Runs unit tests"
 task :test => [:unit_test]
@@ -115,30 +132,4 @@ task :unit_test => :compile do
 end
 
 desc "Runs some of the unit tests for Mono"
-task :mono_unit_test => :compile do
-  runner = NUnitRunner.new :compilemode => COMPILE_TARGET, :source => 'src', :platform => 'x86'
-  runner.executeTests ['Milkman.Testing']
-end
-
-desc "Runs the integration tests"
-task :integration_test => :compile do
-  #runner = NUnitRunner.new :compilemode => COMPILE_TARGET, :source => 'src', :platform => 'x86'
-  #runner.executeTests ['FubuMVC.IntegrationTesting']
-end
-
-desc "ZIPs up the build results"
-zip :package do |zip|
-  zip.directories_to_zip = [props[:stage]]
-  zip.output_file = 'milkman.zip'
-  zip.output_path = [props[:artifacts]]
-end
-
-
-
-
-def self.bottles(args)
-  #bottles = Platform.runtime(Nuget.tool("Bottles", "BottleRunner.exe"))
-  #sh "#{bottles} #{args}"
-end
-
-
+task :mono_unit_test => [:unit_test]
