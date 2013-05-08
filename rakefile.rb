@@ -97,7 +97,7 @@ end
 task :create_bottles => :compile do
   milk_dir = "src/milk/bin/#{COMPILE_TARGET}"
   
-  sh "#{milk_dir}/milk.exe create-all -o build"
+  sh "#{milk_dir}/milk.exe create-all --output build --target #{COMPILE_TARGET}"
   File.delete "build/milkman.zip" if File.exist? "build/milkman.zip"
   
   outer_file_list = FileList.new("#{milk_dir}/*.*") do |fl|
