@@ -80,12 +80,6 @@ namespace Bottles.Tests.Deployment.Runtime.Content
                 fs.ExtractTo(FileSystem.Combine(theSettings.BottlesDirectory, "bot.zip"), "x",
                            ExplodeOptions.PreserveDestination));
         }
-
-        [Test, Ignore]
-        public void ShouldExplodeFiles()
-        {
-            ClassUnderTest.ExplodeFiles(null);
-        }
     }
 
     [TestFixture]

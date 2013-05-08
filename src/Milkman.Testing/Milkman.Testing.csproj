@@ -133,6 +133,9 @@
     <None Include="Configuration\Two.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Include="TestData\deployment\bottles\Fake.zip">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BottleDeployers1\BottleDeployers1.csproj">
