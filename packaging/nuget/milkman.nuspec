@@ -26,5 +26,6 @@
     <file src="..\..\build\iis-deployers.zip" target="tools" />
     <file src="..\..\build\topshelf-deployers.zip" target="tools" />
     <file src="..\..\src\milk\bin\release\*.*" target="tools" />
+    <file src="..\..\src\packages\Microsoft.Web.Administration\lib\net20\*.*" target="tools" />
   </files>
 </package>

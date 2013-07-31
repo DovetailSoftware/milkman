@@ -48,6 +48,9 @@
     <Reference Include="System.XML" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\CommonAssemblyInfo.cs">
+      <Link>Properties\CommonAssemblyInfo.cs</Link>
+    </Compile>
     <Compile Include="Activation.cs" />
     <Compile Include="IISWebsiteCreator.cs" />
     <Compile Include="IISWebsiteDeployer.cs" />

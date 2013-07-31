@@ -102,12 +102,12 @@ task :create_bottles => :compile do
   
   outer_file_list = FileList.new("#{milk_dir}/*.*") do |fl|
     fl.exclude("#{milk_dir}/*.xml")
-    fl.exclude("#{milk_dir}/*vshost*")
+    fl.exclude("#{milk_dir}/*vshost*")    
   end
   
   bin_folder_file_list = FileList.new("#{milk_dir}/*.dll", "#{milk_dir}/*.exe") do |fl|
     fl.exclude("#{milk_dir}/*vshost*")
-    fl.exclude("#{milk_dir}/*Deployers*")
+    fl.exclude("#{milk_dir}/*Deployers*")    
   end
   
   Zip::ZipFile.open("build/milkman.zip", Zip:ZipFile::CREATE) do |zip|
@@ -115,9 +115,13 @@ task :create_bottles => :compile do
       zip.add(f.sub("#{milk_dir}/",''), f)
     end
     
+    admin = "#{milk_dir}/../../../packages/Microsoft.Web.Administration/lib/net20/Microsoft.Web.Administration.dll"
+    zip.add("Microsoft.Web.Administration.dll", admin)
+    
     bin_folder_file_list.to_a.each do |f|
       zip.add(f.sub("#{milk_dir}/",'bin/'), f)
     end
+    zip.add("bin/Microsoft.Web.Administration.dll", admin)
   end  
 end
 
