@@ -47,7 +47,7 @@
     <Reference Include="System.Management" />
     <Reference Include="System.Xml" />
     <Reference Include="Topshelf">
-      <HintPath>..\packages\TopShelf\lib\NET40\Topshelf.dll</HintPath>
+      <HintPath>..\packages\TopShelf\lib\net40-full\Topshelf.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
