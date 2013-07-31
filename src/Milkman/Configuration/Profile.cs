@@ -5,6 +5,7 @@ using System.Text;
 using Bottles.Deployment.Configuration;
 using FubuCore;
 using FubuCore.Configuration;
+using System.Linq;
 
 namespace Bottles.Deployment
 {
@@ -16,7 +17,8 @@ namespace Bottles.Deployment
         public static string Comment = "#";
 
         private readonly IList<string> _recipes = new List<string>();
-        private readonly IList<string> _profiles = new List<string>();
+        private readonly IList<string> _childProfileNames = new List<string>();
+        private readonly IList<Profile> _childProfiles = new List<Profile>();
 
         public Profile(string profileName) : base(SettingCategory.profile, "Profile:  " + profileName)
         {
@@ -29,9 +31,14 @@ namespace Bottles.Deployment
             get { return _recipes; }
         }
 
-        public IEnumerable<string> ProfileDependencies
+        public IEnumerable<string> ProfileDependencyNames
         {
-            get { return _profiles; }
+            get { return _childProfileNames; }
+        }
+
+        public IEnumerable<Profile> ProfileDependencies
+        {
+            get { return _childProfiles; }
         }
 
         public static Profile ReadFrom(DeploymentSettings settings, string profileName)
@@ -52,6 +59,20 @@ namespace Bottles.Deployment
             }
 
             fileSystem.ReadTextFile(profileFile, profile.ReadText);
+
+            profile._childProfileNames.Each(childName =>
+                {
+                    var childProfile = ReadFrom(settings, childName);
+                    profile._childProfiles.Add(childProfile);
+                    childProfile.Data.AllKeys.Each(childKey =>
+                        {
+                            // do not override main profile settings from dependencies. 
+                            // NOTE: Has(childKey) doesn't work here because SettingsData has a weird inner dictionary with a special key structure
+                            if (profile.Data.AllKeys.Any(k => k == childKey)) return; 
+
+                            profile.Data[childKey] = childProfile.Data[childKey];
+                        });
+                });
 
             return profile;
         }
@@ -80,10 +101,10 @@ namespace Bottles.Deployment
                 Data.Read(text);
             }
         }
-
+        
         private void AddProfileDependency(string profileName)
         {
-            _profiles.Fill(profileName);
+            _childProfileNames.Add(profileName);
         }
 
         public void AddRecipe(string recipe)

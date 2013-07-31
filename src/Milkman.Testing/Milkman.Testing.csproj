@@ -112,6 +112,7 @@
     <Compile Include="Deployment\Runtime\FakeDeploymentDiagnostics.cs" />
     <Compile Include="Deployment\Runtime\FakeDirective.cs" />
     <Compile Include="Deployment\Writing\HostWriterTester.cs" />
+    <Compile Include="Deployment\Writing\ProfileConfigWriterRoundTripIntegratedTester.cs" />
     <Compile Include="Deployment\Writing\PropertyValueTester.cs" />
     <Compile Include="EnvironmentSettingsTester.cs" />
     <Compile Include="Host.Packaging\TopshelfBottleDestinationTester.cs" />

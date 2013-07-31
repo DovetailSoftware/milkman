@@ -196,11 +196,7 @@ namespace Bottles.Deployment.Parsing
 
         private IEnumerable<string> dependentProfileRecipes()
         {
-            var x = _graph.Profile.ProfileDependencies.SelectMany(p =>
-            {
-                var profile = Profile.ReadFrom(Settings, p);
-                return profile.Recipes;
-            });
+            var x = _graph.Profile.ProfileDependencies.SelectMany(p => p.Recipes);
             return x;
         }
 

@@ -58,13 +58,19 @@ namespace Bottles.Tests.Deployment.Parsing
             writer.RecipeFor("r4").HostFor("h5").AddProperty<SimpleSettings>(x => x.Two, "ten");
             writer.RecipeFor("r4").HostFor("h5").AddProperty<SimpleSettings>(x => x.One, "*{dbName}*");
 
+            writer.RecipeFor("r5").HostFor("h6");
+
             writer.AddEnvironmentSetting<SimpleSettings>(x => x.Two, "h4", "env-value");
             writer.AddEnvironmentSetting("dbName", "blue");
+
+            writer.ProfileFor("depprofile").AddRecipe("r5");
+            writer.ProfileFor("depprofile").AddProperty<DeploymentReaderTestSettings>(x => x.Foo, "foo-depprofile-*{dbname}*");
 
             writer.ProfileFor("default").AddRecipe("r1");
             writer.ProfileFor("default").AddRecipe("r2");
             writer.ProfileFor("default").AddRecipe("r3");
             writer.ProfileFor("default").AddRecipe("r4");
+            writer.ProfileFor("default").AddProfileDependency("depprofile");
             writer.ProfileFor("default").AddProperty<SimpleSettings>(x => x.One, "h3", "profile-value");
             writer.ProfileFor("default").AddProperty("dbName", "profile-db");
 
@@ -83,10 +89,14 @@ namespace Bottles.Tests.Deployment.Parsing
         [Test]
         public void read_profile_from_the_file()
         {
-            thePlan.Recipes.Select(x => x.Name).ShouldHaveTheSameElementsAs("r1", "r2", "r3", "r4");
+            thePlan.Recipes.Select(x => x.Name).ShouldHaveTheSameElementsAs("r1", "r2", "r3", "r4", "r5");
         }
+    }
 
-
+    public class DeploymentReaderTestSettings
+    {
+        public string Foo { get; set; }
+        public string Bar { get; set; }
     }
 
     [TestFixture]
