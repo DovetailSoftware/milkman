@@ -26,7 +26,7 @@ namespace Bottles.Deployers.Topshelf
                 return "Starting service '{0}'".ToFormat(directive.ServiceName);
             }
 
-            if (directive.AutoStartService)
+            if (!directive.AutoStartService)
             {
                 return "Service '{0}' is not configured for auto-start. Doing nothing".ToFormat(directive.ServiceName);
             }
