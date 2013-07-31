@@ -13,7 +13,7 @@ namespace Bottles.Deployers.Topshelf
         {
             ServiceController svc = getServiceController(directive);
 
-            if(shouldTryAndStartService(svc))
+            if(shouldTryAndStartService(svc, directive))
             {
                 svc.Start();
             }
@@ -21,9 +21,14 @@ namespace Bottles.Deployers.Topshelf
 
         public string GetDescription(TopshelfService directive)
         {
-            if(shouldTryAndStartService(getServiceController(directive)))
+            if(shouldTryAndStartService(getServiceController(directive), directive))
             {
                 return "Starting service '{0}'".ToFormat(directive.ServiceName);
+            }
+
+            if (directive.AutoStartService)
+            {
+                return "Service '{0}' is not configured for auto-start. Doing nothing".ToFormat(directive.ServiceName);
             }
 
             return "Service '{0}' appears to be started. Doing nothing.".ToFormat(directive.ServiceName);
@@ -44,9 +49,9 @@ namespace Bottles.Deployers.Topshelf
             return x;
         }
 
-        private bool shouldTryAndStartService(ServiceController svc)
+        private bool shouldTryAndStartService(ServiceController svc, TopshelfService directive)
         {
-            return svc.Status != ServiceControllerStatus.Running;
+            return directive.AutoStartService && svc.Status != ServiceControllerStatus.Running;
         }
     }
 }

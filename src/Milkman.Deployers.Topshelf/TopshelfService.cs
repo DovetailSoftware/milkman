@@ -16,6 +16,8 @@ namespace Bottles.Deployers.Topshelf
         public string DisplayName { get; set; }
         public string Description { get; set; }
 
+        public bool AutoStartService { get; set; }
+
         public override string ToString()
         {
             return string.Format("InstallLocation: {0}, ServiceName: {1}", InstallLocation, ServiceName);
