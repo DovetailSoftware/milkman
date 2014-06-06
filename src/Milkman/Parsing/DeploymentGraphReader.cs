@@ -23,7 +23,7 @@ namespace Bottles.Deployment.Parsing
 
             var allRecipes = _settings.AllRecipies();
             var env = EnvironmentSettings.ReadFrom(_settings.EnvironmentFile);
-            var profile = Profile.ReadFrom(_settings, options.ProfileName);
+            var profile = Profile.ReadFrom(_settings, options.ProfileName, options.SettingProfileName);
 
             return new DeploymentGraph {
                 Environment = env,
