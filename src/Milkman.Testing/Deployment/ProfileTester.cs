@@ -20,14 +20,14 @@ namespace Bottles.Tests.Deployment
         public void read_text_of_a_recipe()
         {
             theProfile.ReadText("recipe:baseline");
-            theProfile.Recipes.ShouldHaveTheSameElementsAs("baseline");
+            theProfile.AllRecipesFlattened.ShouldHaveTheSameElementsAs("baseline");
         }
 
         [Test]
         public void read_another_setting()
         {
             theProfile.ReadText("Key1=Value1");
-            theProfile.Recipes.Any().ShouldBeFalse();
+            theProfile.AllRecipesFlattened.Any().ShouldBeFalse();
 
             
             theProfile.Data["Key1"].ShouldEqual("Value1");
@@ -37,7 +37,7 @@ namespace Bottles.Tests.Deployment
         public void read_comment()
         {
             theProfile.ReadText("#a comment");
-            theProfile.Recipes.Any().ShouldBeFalse();
+            theProfile.AllRecipesFlattened.Any().ShouldBeFalse();
 
         }
     }

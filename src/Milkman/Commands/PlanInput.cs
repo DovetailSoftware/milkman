@@ -13,6 +13,10 @@ namespace Bottles.Deployment.Commands
         [Description("The profile to execute.  'default' is the default.")]
         public string ProfileFlag { get; set; }
 
+        [Description("The optional settings profile that contains extra settings.")]
+        [FlagAlias("settings", 's')]
+        public string SettingsProfileFlag { get; set; }
+
         [Description("Path to where the deployment folder is ~/deployment")]
         public string DeploymentFlag { get; set; }
 
@@ -39,6 +43,11 @@ namespace Bottles.Deployment.Commands
             if(RecipeFlag != null)
             {
                 options.RecipeNames.Fill(RecipeFlag);
+            }
+
+            if (SettingsProfileFlag != null)
+            {
+                options.SettingProfileName = SettingsProfileFlag;
             }
 
             return options;

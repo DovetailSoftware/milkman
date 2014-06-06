@@ -26,9 +26,15 @@ namespace Bottles.Deployment
         }
 
         public string Name { get; private set; }
+        
         public IEnumerable<string> Recipes
         {
             get { return _recipes; }
+        }
+
+        public IEnumerable<string> AllRecipesFlattened
+        {
+            get { return _recipes.Union(_childProfiles.SelectMany(p => p.AllRecipesFlattened)); }
         }
 
         public IEnumerable<string> ProfileDependencyNames
@@ -41,7 +47,7 @@ namespace Bottles.Deployment
             get { return _childProfiles; }
         }
 
-        public static Profile ReadFrom(DeploymentSettings settings, string profileName)
+        public static Profile ReadFrom(DeploymentSettings settings, string profileName, string settingsProfileName = null)
         {
             var profile = new Profile(profileName);
             var profileFile = settings.ProfileFileNameFor(profileName);
@@ -56,6 +62,12 @@ namespace Bottles.Deployment
                 settings.Directories.Each(d => sb.AppendLine("  {0}".ToFormat(d)));
 
                 throw new Exception(sb.ToString());
+            }
+
+            // Settings profile goes first
+            if (settingsProfileName != null)
+            {
+                profile.AddProfileDependency(settingsProfileName);
             }
 
             fileSystem.ReadTextFile(profileFile, profile.ReadText);

@@ -21,6 +21,7 @@ namespace Bottles.Deployment.Runtime
         }
 
         public string ProfileName { get; set; }
+        public string SettingProfileName { get; set; }
         public string ReportName { get; set; }
         public IList<string> RecipeNames { get; private set; }
         public IList<string> ImportedFolders { get; private set; }
