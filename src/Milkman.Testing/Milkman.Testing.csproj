@@ -120,6 +120,7 @@
     <Compile Include="RecipeTester.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="App.config" />
     <None Include="Configuration\environment.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>environment.Designer.cs</LastGenOutput>
