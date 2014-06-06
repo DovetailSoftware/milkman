@@ -41,12 +41,6 @@
     <Reference Include="nunit.framework">
       <HintPath>..\packages\NUnit\lib\nunit.framework.dll</HintPath>
     </Reference>
-    <Reference Include="nunit.mocks">
-      <HintPath>..\packages\NUnit\lib\nunit.mocks.dll</HintPath>
-    </Reference>
-    <Reference Include="pnunit.framework">
-      <HintPath>..\packages\NUnit\lib\pnunit.framework.dll</HintPath>
-    </Reference>
     <Reference Include="StoryTeller">
       <HintPath>..\packages\Storyteller\lib\net40\StoryTeller.dll</HintPath>
     </Reference>
