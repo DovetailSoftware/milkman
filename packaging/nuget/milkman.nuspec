@@ -12,19 +12,17 @@
     <description>Tools for deploying applications built on top of the Bottles framework</description>
     <tags>packaging areas slices</tags>
     <dependencies>
-      <dependency id="Bottles" />
-      <dependency id="FubuCore" version="0.9.9.182" />
-      <dependency id="HtmlTags" />
-      <dependency id="DotNetZip" />
-      <dependency id="StructureMap" />
+      <dependency id="FubuCore" version="100" />
+      <dependency id="HtmlTags" version="1.2.0.150" />
+      <dependency id="StructureMap" version="2.6.3" />
+      <dependency id="Bottles" version="100"/>
+      <dependency id="DotNetZip" version="1.9.1.8" />
     </dependencies>
   </metadata>
   <files>
     <file src="..\..\src\Milkman\bin\release\Milkman.*" target="lib" />
-    <file src="..\..\src\Milkman\**\*.cs" target="src" />
     <file src="..\..\build\milkman.zip" target="tools" />
     <file src="..\..\build\iis-deployers.zip" target="tools" />
-    <file src="..\..\build\topshelf-deployers.zip" target="tools" />
     <file src="..\..\src\milk\bin\release\*.*" target="tools" />
     <file src="..\..\src\packages\Microsoft.Web.Administration\lib\net20\*.*" target="tools" />
   </files>
