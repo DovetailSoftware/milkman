@@ -35,8 +35,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="FubuCore">
-      <HintPath>..\packages\FubuCore\lib\FubuCore.dll</HintPath>
+    <Reference Include="FubuCore, Version=100.0.0.12, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\FubuCore.100.0.0.12\lib\FubuCore.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
@@ -62,7 +62,7 @@
   <ItemGroup>
     <None Include=".package-manifest" />
     <None Include="app.config" />
-    <None Include="ripple.dependencies.config" />
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

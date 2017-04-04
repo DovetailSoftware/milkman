@@ -6,7 +6,6 @@
   <assembly>Milkman</assembly>
   <assembly>StructureMap</assembly>
   <assembly>Bottles</assembly>
-  <assembly>Bottles.Host.Packaging</assembly>
   <assembly>FubuCore</assembly>
   <assembly>HtmlTags</assembly>
 </package>

@@ -1,3 +1,4 @@
+using System;
 using System.IO;
 using Bottles.Deployment.Commands;
 using FubuCore;
@@ -11,6 +12,10 @@ namespace Bottles.Tests.Commands
         [Test]
         public void Test()
         {
+            var dir = Path.GetDirectoryName(typeof(ListCommandTester).Assembly.CodeBase);
+            dir = new Uri(dir).LocalPath;
+            Directory.SetCurrentDirectory(dir);
+
             var input = new ListInput()
             {
                 PointFlag = @"..{0}..{0}..{0}..".ToFormat(Path.DirectorySeparatorChar)

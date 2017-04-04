@@ -1,3 +1,4 @@
+using System;
 using System.IO;
 using System.Linq;
 using Bottles.Deployment;
@@ -90,6 +91,10 @@ namespace Bottles.Tests.Deployment.Runtime.Content
         [SetUp]
         public void SetUp()
         {
+            var dir = Path.GetDirectoryName(typeof(BottleRepositoryIntegratedTester).Assembly.CodeBase);
+            dir = new Uri(dir).LocalPath;
+            Directory.SetCurrentDirectory(dir);
+
             var settings = new DeploymentSettings(FileSystem.Combine("TestData", ProfileFiles.DeploymentFolder));
             var container = DeploymentBootstrapper.Bootstrap(settings);
             theRepository = container.GetInstance<IBottleRepository>();
