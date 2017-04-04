@@ -148,17 +148,9 @@
       <Project>{0ffd21ca-4b9b-4c72-91b2-91a3f44d4151}</Project>
       <Name>BottleDeployers2</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Bottles.Host.Packaging\Bottles.Host.Packaging.csproj">
-      <Project>{3eb7b41a-ce35-495b-9845-036b0013a6f6}</Project>
-      <Name>Bottles.Host.Packaging</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Milkman.Deployers.Iis\Milkman.Deployers.Iis.csproj">
       <Project>{607f7461-947c-42d7-a4ca-379199a74e6b}</Project>
       <Name>Milkman.Deployers.Iis</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Milkman.Deployers.Topshelf\Milkman.Deployers.Topshelf.csproj">
-      <Project>{1508b697-b748-4d1a-b5f8-abd967db4ed5}</Project>
-      <Name>Milkman.Deployers.Topshelf</Name>
     </ProjectReference>
     <ProjectReference Include="..\Milkman\Milkman.csproj">
       <Project>{665aeffb-7582-484f-8c77-8310b1ae55f2}</Project>
