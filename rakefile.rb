@@ -11,6 +11,35 @@ task :compile => [:clean, :version] do
   sh "#{msbuild} src/Milkman.sln /property:Configuration=#{COMPILE_TARGET} /v:m /t:rebuild /nr:False /maxcpucount:8"
 end
 
+task :create_bottles do
+  require 'zip'
+
+  milk_dir = "src/milk/bin/#{COMPILE_TARGET}"
+  
+  sh "#{milk_dir}/milk.exe create-all --output build --target #{COMPILE_TARGET}"
+  File.delete "build/milkman.zip" if File.exist? "build/milkman.zip"
+  
+  outer_file_list = FileList.new("#{milk_dir}/*.*") do |fl|
+    fl.exclude("#{milk_dir}/*.xml")
+    fl.exclude("#{milk_dir}/*vshost*")    
+  end
+  
+  bin_folder_file_list = FileList.new("#{milk_dir}/*.dll", "#{milk_dir}/*.exe") do |fl|
+    fl.exclude("#{milk_dir}/*vshost*")
+    fl.exclude("#{milk_dir}/*Deployers*")    
+  end
+  
+  Zip::File.open("build/milkman.zip", Zip::File::CREATE) do |zip|
+    outer_file_list.to_a.each do |f|
+      zip.add(f.sub("#{milk_dir}/",''), f)
+    end
+    
+    bin_folder_file_list.to_a.each do |f|
+      zip.add(f.sub("#{milk_dir}/",'bin/'), f)
+    end
+  end  
+end
+
 desc 'Run the unit tests'
 task :test => [:compile, :fast_test] do
 end
