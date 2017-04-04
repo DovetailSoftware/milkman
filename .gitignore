@@ -48,3 +48,4 @@ results/*
 src/Bottles.1.2.dotCover
 bottles.cmd
 logs/
+Gemfile.lock
